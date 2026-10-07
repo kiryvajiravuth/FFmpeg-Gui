@@ -5,9 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello</title>
     <link rel="stylesheet" href="/src/style.css" />
+    <script>
+      (function () {
+        var saved = null;
+        try {
+          saved = localStorage.getItem("ffmpeg-gui-theme");
+        } catch (_) {
+          saved = null;
+        }
+        var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
   </head>
   <body>
-    <div id="app"></div>
+    <div class="app">
+      <header class="app-header">
+        <h1>FFmpeg-GUI</h1>
+        <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Toggle theme">LIGHT</button>
+      </header>
+
+      <main id="workspace" class="workspace">
+        <section id="screen-empty" class="screen" aria-label="Choose a file">
+          <button id="choose-file" type="button" class="drop-target" aria-label="Choose a file">CHOOSE FILE</button>
+        </section>
+
+        <section id="screen-work" class="screen" hidden></section>
+
+        <section id="screen-processing" class="screen" hidden></section>
+
+        <section id="screen-result" class="screen" hidden></section>
+      </main>
+
+      <p id="error" class="error" role="alert" hidden></p>
+
+      <details class="debug" id="debug-log">
+        <summary>Debug log</summary>
+        <pre id="log" class="debug__log"></pre>
+      </details>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
