@@ -1,0 +1,16 @@
+{
+  "name": "ffmpeg-gui-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node dist/index.cjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.21.5",
+    "typescript": "^5.4.0"
+  }
+}
